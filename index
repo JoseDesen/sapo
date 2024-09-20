@@ -1,0 +1,410 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>sapo</title>
+		<style>
+		*{
+		text-align:center;
+		color:black;
+		}
+		a{
+		text-decoration:none;
+		width:100%;
+		height:33%;
+		font-size:100px;	
+		}
+		#j3{
+		background-color:green;
+		}
+		#j1,#j2,#j4,#j5{
+		background-color:white;
+		}
+		input{
+		border:none;
+		}
+		.a1,.a2,.a3,.a4,.a5,.b1,.b2,.b3,.b4,.b5,.c1,.c2,.c3,.c4,.c5,.d1,.d2,.d3,.d4,.d5,.j1,.j2,.j3,.j4,.j5{
+		width:33px;
+		height:33px;
+		margin:1px;
+		}
+		</style>
+		<script>
+			var sapo=3;	
+			var corredorSapo=3;
+			var linha1;
+			var linha2; 
+			var linha3;
+			var linha4;
+			function zerar(){
+				document.getElementById('a1').style.backgroundColor="red";
+				document.getElementById('a2').style.backgroundColor="red";
+				document.getElementById('a3').style.backgroundColor="red";
+				document.getElementById('a4').style.backgroundColor="red";
+				document.getElementById('a5').style.backgroundColor="red";
+
+				document.getElementById('b1').style.backgroundColor="red";
+				document.getElementById('b2').style.backgroundColor="red";
+				document.getElementById('b3').style.backgroundColor="red";
+				document.getElementById('b4').style.backgroundColor="red";
+				document.getElementById('b5').style.backgroundColor="red";
+
+				document.getElementById('c1').style.backgroundColor="red";
+				document.getElementById('c2').style.backgroundColor="red";
+				document.getElementById('c3').style.backgroundColor="red";
+				document.getElementById('c4').style.backgroundColor="red";
+				document.getElementById('c5').style.backgroundColor="red";
+
+				document.getElementById('d1').style.backgroundColor="red";
+				document.getElementById('d2').style.backgroundColor="red";
+				document.getElementById('d3').style.backgroundColor="red";
+				document.getElementById('d4').style.backgroundColor="red";
+				document.getElementById('d5').style.backgroundColor="red";
+		
+
+			} 
+			function iniciar(){
+				
+				zerar();
+				var sorteio1=Math.floor(Math.random() *3)+2;
+				if(sorteio1==2){
+					document.getElementById('d2').style.backgroundColor="blue";	
+					corredorSapo=corredorSapo-1;
+
+				}
+				if(sorteio1==3){
+					document.getElementById('d3').style.backgroundColor="blue";
+					corredorSapo=corredorSapo;
+				}
+				if(sorteio1==4){
+					document.getElementById('d4').style.backgroundColor="blue";
+					corredorSapo=corredorSapo+1;
+				}	
+				linha1=sorteio1;
+				var sorteio2=Math.floor(Math.random() *3)+1;
+				if(sorteio2==1){
+					corredorSapo=corredorSapo-1;
+					if(corredorSapo==0){					
+						corredorSapo=corredorSapo+1;
+					}
+				}
+				if(sorteio2==2){
+					corredorSapo=corredorSapo;
+				}
+				if(sorteio2==3){				
+					corredorSapo=corredorSapo+1;
+					if(corredorSapo==6){					
+						corredorSapo=corredorSapo-1;
+					}
+				}
+				linha2=corredorSapo;	
+				if(corredorSapo==1){	
+					document.getElementById('c1').style.backgroundColor="blue";
+				}
+				if(corredorSapo==2){	
+					document.getElementById('c2').style.backgroundColor="blue";
+				}
+				if(corredorSapo==3){	
+					document.getElementById('c3').style.backgroundColor="blue";
+				}
+				if(corredorSapo==4){	
+					document.getElementById('c4').style.backgroundColor="blue";
+				}
+				if(corredorSapo==5){	
+					document.getElementById('c5').style.backgroundColor="blue";
+				}
+
+				var sorteio3=Math.floor(Math.random() *3)+1;
+				if(sorteio3==1){
+					corredorSapo=corredorSapo-1;
+					if(corredorSapo==0){					
+						corredorSapo=corredorSapo+1;
+					}
+				}
+				if(sorteio3==2){
+					corredorSapo=corredorSapo;
+				}
+				if(sorteio3==3){				
+					corredorSapo=corredorSapo+1;
+					if(corredorSapo==6){					
+						corredorSapo=corredorSapo-1;
+					}
+				}
+				linha3=corredorSapo;	
+				if(corredorSapo==1){	
+					document.getElementById('b1').style.backgroundColor="blue";
+				}
+				if(corredorSapo==2){	
+					document.getElementById('b2').style.backgroundColor="blue";
+				}
+				if(corredorSapo==3){	
+					document.getElementById('b3').style.backgroundColor="blue";
+				}
+				if(corredorSapo==4){	
+					document.getElementById('b4').style.backgroundColor="blue";
+				}
+				if(corredorSapo==5){	
+					document.getElementById('b5').style.backgroundColor="blue";
+				}
+
+				var sorteio4=Math.floor(Math.random() *3)+1;
+				if(sorteio4==1){
+					corredorSapo=corredorSapo-1;
+					if(corredorSapo==0){					
+						corredorSapo=corredorSapo+1;
+					}
+				}
+				if(sorteio4==2){
+					corredorSapo=corredorSapo;
+				}
+				if(sorteio4==3){				
+					corredorSapo=corredorSapo+1;
+					if(corredorSapo==6){					
+						corredorSapo=corredorSapo-1;
+					}
+				}
+				linha4=corredorSapo;	
+				if(corredorSapo==1){	
+					document.getElementById('a1').style.backgroundColor="blue";
+				}
+				if(corredorSapo==2){	
+					document.getElementById('a2').style.backgroundColor="blue";
+				}
+				if(corredorSapo==3){	
+					document.getElementById('a3').style.backgroundColor="blue";
+				}
+				if(corredorSapo==4){	
+					document.getElementById('a4').style.backgroundColor="blue";
+				}
+				if(corredorSapo==5){	
+					document.getElementById('a5').style.backgroundColor="blue";
+				}				
+			}
+			var parar=false;
+			function direcao(d){
+				if(parar==false){
+					if(seg==0){
+					disparar();
+					}
+					if(d=="1"){
+						direcaoSapo=sapo-1;
+						if(linha1==direcaoSapo){
+							proxima();
+						}else{
+							alert("errou");
+							clearInterval(cronometro);
+							var r=document.getElementById('recomecar');
+							r.innerHTML="<div><input type='button' value='Recomeçar' onClick='window.location.reload()'> </div>";	
+							parar=true;	
+						}
+					}
+					if(d=="2"){
+						direcaoSapo=sapo;
+						if(linha1==direcaoSapo){
+							proxima();
+						}else{
+							alert("errou");
+							clearInterval(cronometro);
+							var r=document.getElementById('recomecar');
+							r.innerHTML="<div><input type='button' value='Recomeçar' onClick='window.location.reload()'> </div>";
+							parar=true;								}
+					}
+					if(d=="3"){
+						direcaoSapo=sapo+1;
+						if(linha1==direcaoSapo){
+							proxima();
+						}else{
+							alert("errou");
+							clearInterval(cronometro);
+							var r=document.getElementById('recomecar');
+							r.innerHTML="<div><input type='button' value='Recomeçar' onClick='window.location.reload()'> </div>";
+							parar=true;	
+						}
+					}
+				}
+			}
+			pontuacao=0;
+			function proxima(){
+				pontuacao=pontuacao+1;
+				var p=document.getElementById('pontuacao');
+				p.innerHTML="<div id='pontuacao'>Pontuação:"+pontuacao+"</div>";
+				if(pontuacao%10==0){
+				seg=seg+5;
+				}
+	
+				document.getElementById('j1').style.backgroundColor="white";
+				document.getElementById('j2').style.backgroundColor="white";
+				document.getElementById('j3').style.backgroundColor="white";
+				document.getElementById('j4').style.backgroundColor="white";
+				document.getElementById('j5').style.backgroundColor="white";
+
+				if(linha1==1){
+				document.getElementById('j1').style.backgroundColor="green";
+				sapo=1;
+				}
+				if(linha1==2){
+				document.getElementById('j2').style.backgroundColor="green";
+				sapo=2;
+				}
+				if(linha1==3){
+				document.getElementById('j3').style.backgroundColor="green";
+				sapo=3;
+				}
+				if(linha1==4){
+				document.getElementById('j4').style.backgroundColor="green";
+				sapo=4;
+				}
+				if(linha1==5){
+				document.getElementById('j5').style.backgroundColor="green";
+				sapo=5;
+				}
+
+				zerar();
+
+				linha1=linha2;
+				if(linha1==1){	
+					document.getElementById('d1').style.backgroundColor="blue";
+				}
+				if(linha1==2){	
+					document.getElementById('d2').style.backgroundColor="blue";
+				}
+				if(linha1==3){	
+					document.getElementById('d3').style.backgroundColor="blue";
+				}
+				if(linha1==4){	
+					document.getElementById('d4').style.backgroundColor="blue";
+				}
+				if(linha1==5){	
+					document.getElementById('d5').style.backgroundColor="blue";
+				}
+
+				linha2=linha3;
+				if(linha2==1){	
+					document.getElementById('c1').style.backgroundColor="blue";
+				}
+				if(linha2==2){	
+					document.getElementById('c2').style.backgroundColor="blue";
+				}
+				if(linha2==3){	
+					document.getElementById('c3').style.backgroundColor="blue";
+				}
+				if(linha2==4){	
+					document.getElementById('c4').style.backgroundColor="blue";
+				}
+				if(linha2==5){	
+					document.getElementById('c5').style.backgroundColor="blue";
+				}
+
+
+				linha3=linha4;
+				if(linha3==1){	
+					document.getElementById('b1').style.backgroundColor="blue";
+				}
+				if(linha3==2){	
+					document.getElementById('b2').style.backgroundColor="blue";
+				}
+				if(linha3==3){	
+					document.getElementById('b3').style.backgroundColor="blue";
+				}
+				if(linha3==4){	
+					document.getElementById('b4').style.backgroundColor="blue";
+				}
+				if(linha3==5){	
+					document.getElementById('b5').style.backgroundColor="blue";
+				}
+
+
+				var sorteio4=Math.floor(Math.random() *3)+1;
+				if(sorteio4==1){
+					corredorSapo=corredorSapo-1;
+					if(corredorSapo==0){					
+						corredorSapo=corredorSapo+1;
+					}
+				}
+				if(sorteio4==2){
+					corredorSapo=corredorSapo;
+				}
+				if(sorteio4==3){				
+					corredorSapo=corredorSapo+1;
+					if(corredorSapo==6){					
+						corredorSapo=corredorSapo-1;
+					}
+				}
+				linha4=corredorSapo;	
+				if(corredorSapo==1){	
+					document.getElementById('a1').style.backgroundColor="blue";
+				}
+				if(corredorSapo==2){	
+					document.getElementById('a2').style.backgroundColor="blue";
+				}
+				if(corredorSapo==3){	
+					document.getElementById('a3').style.backgroundColor="blue";
+				}
+				if(corredorSapo==4){	
+					document.getElementById('a4').style.backgroundColor="blue";
+				}
+				if(corredorSapo==5){	
+					document.getElementById('a5').style.backgroundColor="blue";
+				}				
+			}
+      var seg=0;
+      var cronometro;
+      function disparar(){
+      	seg=11;
+      	cronometro = setInterval(function() {
+      	seg--;	
+      	var c=document.getElementById('tempo');
+      	c.innerHTML="<div id='tempo'>Tempo restante:<br>"+seg+"</div>";
+      		if(seg==0){
+      			clearInterval(cronometro);
+      			parar=true;
+      			alert("Seu tempo acabou");
+      			var r=document.getElementById('recomecar');
+      			r.innerHTML="<div><input type='button' value='Recomeçar' onClick='window.location.reload()'> </div>";
+      	
+      		}		
+      	}, 1000);
+      }
+
+		</script>
+	</head>
+	<body bgcolor="white" onload="iniciar()">
+<input type="button" id="a1" class="a1" disabled>
+<input type="button" id="a2" class="a2" disabled>
+<input type="button" id="a3" class="a3" disabled>
+<input type="button" id="a4" class="a4" disabled>
+<input type="button" id="a5" class="a5" disabled>
+<br>
+<input type="button" id="b1" class="b1" disabled>
+<input type="button" id="b2" class="b2" disabled>
+<input type="button" id="b3" class="b3" disabled>
+<input type="button" id="b4" class="b4" disabled>
+<input type="button" id="b5" class="b5" disabled>
+<br>
+<input type="button" id="c1" class="c1" disabled>
+<input type="button" id="c2" class="c2" disabled>
+<input type="button" id="c3" class="c3" disabled>
+<input type="button" id="c4" class="c4" disabled>
+<input type="button" id="c5" class="c5" disabled>
+<br>
+<input type="button" id="d1" class="d1" disabled>
+<input type="button" id="d2" class="d2" disabled>
+<input type="button" id="d3" class="d3" disabled>
+<input type="button" id="d4" class="d4" disabled>
+<input type="button" id="d5" class="d5" disabled>
+<br>
+<input type="button" id="j1" class="j1" disabled>
+<input type="button" id="j2" class="j2" disabled>
+<input type="button" id="j3" class="j3" disabled>
+<input type="button" id="j4" class="j4" disabled>
+<input type="button" id="j5" class="j5" disabled>
+<br>
+<input type="button" value="esquerda" onclick="direcao(1)">
+<input type="button" value="frente" onclick="direcao(2)">
+<input type="button" value="direita" onclick="direcao(3)">
+<div id='pontuacao'></div>
+<div id='tempo'></div>
+<div id='recomecar'></div>
+
+			
+	</body>
+</html>
