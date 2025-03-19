@@ -9,7 +9,7 @@ app.use(cors({
   methods: ['GET', 'POST'],
 }))
 app.use((req, res, next) => {
-  const allowedOrigins = ['https://josedesen.github.io', 'https://josedesen.github.io/quebra-cabeca/quebra_cabeca_nivel1.html'];
+  const allowedOrigins = ['https://josedesen.github.io', 'https://josedesen.github.io/sapo/'];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {
@@ -37,30 +37,30 @@ connect();
 app.post('/pontuacao', async (req, res) => {
   try {
     const { nome, pontuacao } = req.body;
-    if (!nome || !tempo || typeof tempo !== 'number') {
-      return res.status(400).json({ erro: 'Dados inválidos: Nome ou tempo ausente ou mal formatado.' });
+    if (!nome || !pontuacao || typeof pontuacao !== 'number') {
+      return res.status(400).json({ erro: 'Dados inválidos: Nome ou pontuacao ausente ou mal formatado.' });
     }else{
       const collection = client.db('sapo').collection('pontuacoes');
   
-      // Obter os 5 melhores tempos ordenados
-      const melhoresTempos = await collection.find().sort({ tempo: 1 }).limit(5).toArray();
+      // Obter os 5 melhores pontuacaos ordenados
+      const melhorespontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(5).toArray();
     
-      // Verificar se o tempo é menor que o maior entre os 5 melhores
-      if (melhoresTempos.length < 5 || tempo < melhoresTempos[melhoresTempos.length - 1].tempo) {
-        // Adicionar o novo tempo
-        await collection.insertOne({ nome, tempo });
+      // Verificar se o pontuacao é menor que o maior entre os 5 melhores
+      if (melhorespontuacaos.length < 5 || pontuacao < melhorespontuacaos[melhorespontuacaos.length - 1].pontuacao) {
+        // Adicionar o novo pontuacao
+        await collection.insertOne({ nome, pontuacao });
     
-        // Se mais de 5 tempos forem salvos, remover o maior
-        if (melhoresTempos.length === 5 ) {
-          const maiorTempo = await collection.find().sort({ tempo: -1 }).limit(1).toArray();
+        // Se mais de 5 pontuacaos forem salvos, remover o maior
+        if (melhorespontuacaos.length === 5 ) {
+          const maiorpontuacao = await collection.find().sort({ pontuacao: -1 }).limit(1).toArray();
         }
-        res.json({ mensagem: 'Tempo e nome adicionados com sucesso' });
+        res.json({ mensagem: 'pontuacao e nome adicionados com sucesso' });
         }else{
-         res.status(304).send('O tempo enviado não é menor que os tempos já registrados');
+         res.status(304).send('O pontuacao enviado não é menor que os pontuacaos já registrados');
         }
     }
   } catch (error) {
-    console.error('Erro ao adicionar tempo e nome:', error);
+    console.error('Erro ao adicionar pontuacao e nome:', error);
     res.status(500).json({erro:'Erro interno no servidor', detalhes: error.menssage});
   }
 });
@@ -68,10 +68,10 @@ app.post('/pontuacao', async (req, res) => {
 app.get('/pontuacao', async (req, res) => {
   try {
     const collection = client.db('sapo').collection('pontuacoes');
-    const tempos = await collection.find().sort({ tempo: 1 }).limit(5).toArray();
-    res.json(tempos);
+    const pontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(5).toArray();
+    res.json(pontuacaos);
   } catch (error) {
-    console.error('Erro ao obter os tempos:', error);
+    console.error('Erro ao obter os pontuacaos:', error);
     res.status(500).send('Erro interno no servidor');
   }
 });
