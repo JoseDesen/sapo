@@ -6,7 +6,7 @@
 		*{
 		text-align:center;
 		color:black;
-        font-size: 25px;
+ 	       font-size: 25px;
 		}
 		#j3{
 		background-color:green;
@@ -23,7 +23,7 @@
 		.a1,.a2,.a3,.a4,.a5,.b1,.b2,.b3,.b4,.b5,.c1,.c2,.c3,.c4,.c5,.d1,.d2,.d3,.d4,.d5,.j1,.j2,.j3,.j4,.j5{
 		width:50px;
 		height:50px;
-        margin: 1px;
+        	margin: 1px;
 		}
         #botaoRecomecar{
             background-color:white;
@@ -32,12 +32,9 @@
 		</style>
 		<script>
                         var nomeJogador;
-                        if(verificar==null || verificar=="" || verificar=="null"){
-				do{
-					nomeJogador=prompt("Qual é seu nome?");
-				}while(nome=="" || nome==null || nome=="null");
-				
-			}
+                	do{
+				nomeJogador=prompt("Qual é seu nome?");
+			}while(nome=="" || nome==null || nome=="null");
                         
                         // Função para adicionar um novo pontuacao
 				async function adicionarPontuacao(nome, pontuacao) {
