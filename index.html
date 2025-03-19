@@ -39,7 +39,7 @@
                         // Função para adicionar um novo pontuacao
 				async function adicionarPontuacao(nome, pontuacao) {
 				    try {
-				        const response = await fetch('https://sapo-lt2w.onrender.com/pontuacaos/', {
+				        const response = await fetch('https://sapo-lt2w.onrender.com/pontuacao/', {
 				            method: 'POST',
 				            headers: {
 				                'Content-Type': 'application/json',
@@ -59,7 +59,7 @@
 
 				// Função para exibir os melhores pontuacaos na tabela
 				async function exibirMelhoresPontuacaos() {
-					const response = await fetch('https://sapo-lt2w.onrender.com/pontuacaos/'); 
+					const response = await fetch('https://sapo-lt2w.onrender.com/pontuacao/'); 
 					const pontuacaos = await response.json();
 					// Obtém a tabela de melhores pontuacaos
 					const tabela = document.getElementById('melhores-pontuacaos').getElementsByTagName('tbody')[0];
