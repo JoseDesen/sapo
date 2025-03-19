@@ -6,25 +6,29 @@
 		*{
 		text-align:center;
 		color:black;
-		}
-		a{
-		text-decoration:none;
-		font-size:50px;	
+        font-size: 25px;
 		}
 		#j3{
 		background-color:green;
 		}
 		#j1,#j2,#j4,#j5{
 		background-color:white;
+		width:50px;
+		height:50px;
 		}
 		input{
 		border:none;
+        
 		}
 		.a1,.a2,.a3,.a4,.a5,.b1,.b2,.b3,.b4,.b5,.c1,.c2,.c3,.c4,.c5,.d1,.d2,.d3,.d4,.d5,.j1,.j2,.j3,.j4,.j5{
-		width:33px;
-		height:33px;
-		margin:1px;
+		width:50px;
+		height:50px;
+        margin: 1px;
 		}
+        #botaoRecomecar{
+            background-color:white;
+            color:white;
+        }
 		</style>
 		<script>
 			var sapo=3;	
@@ -57,13 +61,31 @@
 				document.getElementById('d3').style.backgroundColor="red";
 				document.getElementById('d4').style.backgroundColor="red";
 				document.getElementById('d5').style.backgroundColor="red";
-		
-
+                if(parar==true){
+                document.getElementById('j1').style.backgroundColor="white";
+				document.getElementById('j2').style.backgroundColor="white";
+				document.getElementById('j3').style.backgroundColor="green";
+				document.getElementById('j4').style.backgroundColor="white";
+				document.getElementById('j5').style.backgroundColor="white";
+		        sapo=3;	
+			    corredorSapo=3;
+                parar=false;
+                pontuacao=0;
+				var p=document.getElementById('pontuacao');
+				p.innerHTML="<div id='pontuacao'>Pontuação:"+pontuacao+"</div>";
+                disparar();
+                }
 			} 
 			function iniciar(){
 				
 				zerar();
-				var sorteio1=Math.floor(Math.random() *3)+2;
+                
+
+                document.getElementById('botaoRecomecar').style.color="white";
+                document.f.btnRecomecar.disabled=true;
+
+                var sorteio1=Math.floor(Math.random() *3)+2;
+
 				if(sorteio1==2){
 					document.getElementById('d2').style.backgroundColor="blue";	
 					corredorSapo=corredorSapo-1;
@@ -190,9 +212,9 @@
 						}else{
 							alert("errou");
 							clearInterval(cronometro);
-							var r=document.getElementById('recomecar');
-							r.innerHTML="<div><a href='https://josedesen.github.io/sapo/'>Recomeçar</a></div>";	
-							parar=true;	
+                            document.getElementById('botaoRecomecar').style.color="black";
+                            document.f.btnRecomecar.disabled=false;
+                            parar=true;	
 						}
 					}
 					if(d=="2"){
@@ -202,9 +224,10 @@
 						}else{
 							alert("errou");
 							clearInterval(cronometro);
-							var r=document.getElementById('recomecar');
-							r.innerHTML="<div><a href='https://josedesen.github.io/sapo/'>Recomeçar</a></div>";
-							parar=true;								}
+                            document.getElementById('botaoRecomecar').style.color="black";
+                            document.f.btnRecomecar.disabled=false;
+							parar=true;
+                        }
 					}
 					if(d=="3"){
 						direcaoSapo=sapo+1;
@@ -213,9 +236,11 @@
 						}else{
 							alert("errou");
 							clearInterval(cronometro);
-							var r=document.getElementById('recomecar');
-							r.innerHTML="<div><a href='https://josedesen.github.io/sapo/'>Recomeçar</a></div>";
-							parar=true;	
+							
+                            document.getElementById('botaoRecomecar').style.color="black";
+                            document.f.btnRecomecar.disabled=false;
+                
+                            parar=true;	
 						}
 					}
 				}
@@ -356,9 +381,9 @@
       			clearInterval(cronometro);
       			parar=true;
       			alert("Seu tempo acabou");
-      			var r=document.getElementById('recomecar');
-      			r.innerHTML="<div><a href='https://josedesen.github.io/sapo/'>Recomeçar</a></div>";
-      	
+      			document.getElementById('botaoRecomecar').style.color="black";
+                document.f.btnRecomecar.disabled=false;
+                
       		}		
       	}, 1000);
       }
@@ -366,6 +391,7 @@
 		</script>
 	</head>
 	<body bgcolor="white" onload="iniciar()">
+<form name="f">
 <input type="button" id="a1" class="a1" disabled>
 <input type="button" id="a2" class="a2" disabled>
 <input type="button" id="a3" class="a3" disabled>
@@ -401,8 +427,24 @@
 <input type="button" value="direita" onclick="direcao(3)">
 <div id='pontuacao'></div>
 <div id='tempo'></div>
-<div id='recomecar'></div>
+<input type="button" id="botaoRecomecar" value="Recomecar" name="btnRecomecar" onclick="iniciar()" disabled>
 
+</form>	
+<br><br><br><br>
+	<table id="melhores-tempos" border="1">
+		<thead>
+			<tr>
+				<th colspan="3">Ranking</th>
+			</tr>
+			<tr>
+				<th>N°</th>
+				<th>Nome</th>
+				<th>Tempo</th>
+			</tr>
+		</thead>
+		<tbody>
 			
+		</tbody>
+	</table>
 	</body>
 </html>
