@@ -34,9 +34,15 @@ async function connect() {
   }
 }
 connect();
+
+var tempo=0;
 app.post('/pontuacao', async (req, res) => {
   try {
     const { nome, pontuacao } = req.body;
+    console.log(nome);
+    console.log(pontuacao);
+    console.log(tempo);
+    
     if (!nome || !pontuacao || typeof pontuacao !== 'number') {
       return res.status(400).json({ erro: 'Dados inválidos: Nome ou pontuacao ausente ou mal formatado.' });
     }else{
