@@ -38,10 +38,7 @@ connect();
 var tempo=0;
 app.post('/pontuacao', async (req, res) => {
   try {
-    const { nome, pontuacao } = req.body;
-    console.log(nome);
-    console.log(pontuacao);
-    console.log(tempo);
+    const { nome, pontuaco } = req.body;
     
     if (!nome || !pontuacao || typeof pontuacao !== 'number') {
       return res.status(400).json({ erro: 'Dados inválidos: Nome ou pontuacao ausente ou mal formatado.' });
@@ -49,7 +46,7 @@ app.post('/pontuacao', async (req, res) => {
       const collection = client.db('sapo').collection('pontuacoes');
   
       // Obter os 5 melhores pontuacaos ordenados
-      const melhorespontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(5).toArray();
+      const melhorespontuacaos = await collection.find().sort({ pontuacao: -1 }).limit(10).toArray();
     
       // Verificar se o pontuacao é menor que o maior entre os 5 melhores
       if (melhorespontuacaos.length < 5 || pontuacao < melhorespontuacaos[melhorespontuacaos.length - 1].pontuacao) {
@@ -57,8 +54,8 @@ app.post('/pontuacao', async (req, res) => {
         await collection.insertOne({ nome, pontuacao });
     
         // Se mais de 5 pontuacaos forem salvos, remover o maior
-        if (melhorespontuacaos.length === 5 ) {
-          const maiorpontuacao = await collection.find().sort({ pontuacao: -1 }).limit(1).toArray();
+        if (melhorespontuacaos.length === 10 ) {
+          const maiorpontuacao = await collection.find().sort({ pontuacao: 1 }).limit(1).toArray();
         }
         res.json({ mensagem: 'pontuacao e nome adicionados com sucesso' });
         }else{
@@ -74,7 +71,7 @@ app.post('/pontuacao', async (req, res) => {
 app.get('/pontuacao', async (req, res) => {
   try {
     const collection = client.db('sapo').collection('pontuacoes');
-    const pontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(5).toArray();
+    const pontuacaos = await collection.find().sort({ pontuacao: -1 }).limit(10).toArray();
     res.json(pontuacaos);
   } catch (error) {
     console.error('Erro ao obter os pontuacaos:', error);
