@@ -44,6 +44,7 @@ app.post('/pontuacao', async (req, res) => {
       return res.status(400).json({ erro: 'Dados inválidos: Nome ou pontuacao ausente ou mal formatado.' });
     }else{
       const collection = client.db('sapo').collection('pontuacoes');
+      console.log('está chegando até aqui');
   
       // Obter os 5 melhores pontuacaos ordenados
       const melhorespontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(20).toArray();
