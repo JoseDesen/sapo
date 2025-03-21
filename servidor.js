@@ -46,10 +46,13 @@ app.post('/pontuacao', async (req, res) => {
       const collection = client.db('sapo').collection('pontuacoes');
   
       // Obter os 5 melhores pontuacaos ordenados
-      const melhorespontuacaos = await collection.find().sort({ pontuacao: -1 }).limit(20).toArray();
-        // Se mais de 5 pontuacaos forem salvos, remover o maior
-        if (melhorespontuacaos.length === 20 ) {
-          const maiorpontuacao = await collection.find().sort({ pontuacao: -1 }).limit(1).toArray();
+      const melhorespontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(20).toArray();
+        // Se mais de 5 tempos forem salvos, remover o maior
+        if (melhoresTempos.length === 20 ) {
+          const maiorTempo = await collection.find().sort({ tempo: 1 }).limit(20).toArray();
+          if (maiorTempo.length > 0 && maiorTempo[19]._id) {
+            await collection.deleteOne({ _id: maiorTempo[19]._id });
+          }
         }
         res.json({ mensagem: 'pontuacao e nome adicionados com sucesso' });
         }else{
@@ -65,7 +68,7 @@ app.post('/pontuacao', async (req, res) => {
 app.get('/pontuacao', async (req, res) => {
   try {
     const collection = client.db('sapo').collection('pontuacoes');
-    const pontuacaos = await collection.find().sort({ pontuacao: -1 }).limit(10).toArray();
+    const pontuacaos = await collection.find().sort({ pontuacao: -1 }).limit(20).toArray();
     res.json(pontuacaos);
   } catch (error) {
     console.error('Erro ao obter os pontuacaos:', error);
