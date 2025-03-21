@@ -46,16 +46,10 @@ app.post('/pontuacao', async (req, res) => {
       const collection = client.db('sapo').collection('pontuacoes');
   
       // Obter os 5 melhores pontuacaos ordenados
-      const melhorespontuacaos = await collection.find().sort({ pontuacao: -1 }).limit(10).toArray();
-    
-      // Verificar se o pontuacao é menor que o maior entre os 5 melhores
-      if (melhorespontuacaos.length < 5 || pontuacao < melhorespontuacaos[melhorespontuacaos.length - 1].pontuacao) {
-        // Adicionar o novo pontuacao
-        await collection.insertOne({ nome, pontuacao });
-    
+      const melhorespontuacaos = await collection.find().sort({ pontuacao: -1 }).limit(20).toArray();
         // Se mais de 5 pontuacaos forem salvos, remover o maior
-        if (melhorespontuacaos.length === 10 ) {
-          const maiorpontuacao = await collection.find().sort({ pontuacao: 1 }).limit(1).toArray();
+        if (melhorespontuacaos.length === 20 ) {
+          const maiorpontuacao = await collection.find().sort({ pontuacao: -1 }).limit(1).toArray();
         }
         res.json({ mensagem: 'pontuacao e nome adicionados com sucesso' });
         }else{
