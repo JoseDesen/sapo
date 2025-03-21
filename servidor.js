@@ -35,7 +35,7 @@ async function connect() {
 }
 connect();
 
-var tempo=0;
+var pontuacao=0;
 app.post('/pontuacao', async (req, res) => {
   try {
     const { nome, pontuacao } = req.body;
@@ -48,11 +48,17 @@ app.post('/pontuacao', async (req, res) => {
   
       // Obter os 5 melhores pontuacaos ordenados
       const melhorespontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(20).toArray();
-        // Se mais de 5 tempos forem salvos, remover o maior
-        if (melhoresTempos.length === 20 ) {
-          const maiorTempo = await collection.find().sort({ tempo: 1 }).limit(20).toArray();
-          if (maiorTempo.length > 0 && maiorTempo[19]._id) {
-            await collection.deleteOne({ _id: maiorTempo[19]._id });
+    
+      // Verificar se o pontuacao é menor que o maior entre os 5 melhores
+      if (melhorespontuacaos.length < 20 || pontuacao < melhorespontuacaos[melhorespontuacaos.length - 1].pontuacao) {
+        // Adicionar o novo pontuacao
+        await collection.insertOne({ nome, pontuacao });
+    
+        // Se mais de 5 pontuacaos forem salvos, remover o maior
+        if (melhorespontuacaos.length === 20 ) {
+          const maiorpontuacao = await collection.find().sort({ pontuacao: -1 }).limit(1).toArray();
+          if (maiorpontuacao.length > 0 && maiorpontuacao[0]._id) {
+            await collection.deleteOne({ _id: maiorpontuacao[0]._id });
           }
         }
         res.json({ mensagem: 'pontuacao e nome adicionados com sucesso' });
