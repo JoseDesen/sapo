@@ -54,7 +54,7 @@ app.post('/pontuacao', async (req, res) => {
     
         // Se mais de 5 pontuacaos forem salvos, remover o maior
         if (melhorespontuacaos.length === 20 ) {
-          const maiorpontuacao = await collection.find().sort({ pontuacao: -1 }).limit(1).toArray();
+          const maiorpontuacao = await collection.find().sort({ pontuacao: 1 }).limit(1).toArray();
           if (maiorpontuacao.length > 0 && maiorpontuacao[0]._id) {
             await collection.deleteOne({ _id: maiorpontuacao[0]._id });
           }
