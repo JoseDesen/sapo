@@ -47,7 +47,7 @@ touch-action : pan-y;
                         var nomeJogador;
                 	do{
 				nomeJogador=prompt("Qual é seu nome?");
-			}while(nomeJogador=="" || nomeJogador==null || nomeJogador=="null");
+			}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");
                         
                         // Função para adicionar um novo pontuacao
 				async function adicionarPontuacao(nome, pontuacao) {
