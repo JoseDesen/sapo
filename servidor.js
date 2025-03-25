@@ -46,15 +46,9 @@ app.post('/pontuacao', async (req, res) => {
   
       // Obter os 5 melhores pontuacaos ordenados
       const melhorespontuacaos = await collection.find().sort({ pontuacao: 1 }).limit(20).toArray();
-
-      console.log(melhorespontuacaos[0].pontuacao);
-      console.log(typeof melhorespontuacaos[0].pontuacao);
-      console.log(pontuacao);
-      console.log(typeof pontuacao);
-      
       
       // Verificar se a pontuação é maior que o menor entre os melhores
-      if (melhorespontuacaos.length < 20 || pontuacao < melhorespontuacaos[0].pontuacao) {
+      if (melhorespontuacaos.length < 20 || pontuacao > melhorespontuacaos[0].pontuacao) {
         // Adicionar a nova pontuacao
         await collection.insertOne({ nome, pontuacao });
 
