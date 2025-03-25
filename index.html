@@ -27,7 +27,7 @@
 	        #botaoRecomecar{
 	            background-color:white;
 	            color:white;
-font-size:75px;
+		    font-size:75px;
 	        }
 		.direcao{
 		font-size: 75px;
@@ -278,7 +278,7 @@ font-size:75px;
 							
                 adicionarPontuacao(nomeJogador,pontuacao);
                                                         clearInterval(cronometro);
-                            document.getElementById('botaoRecomecar').style.color="yellow";
+                            document.getElementById('botaoRecomecar').style.color="orange";
                             document.f.btnRecomecar.disabled=false;
                             parar=true;	
 						}
@@ -292,7 +292,7 @@ font-size:75px;
 							
                 adicionarPontuacao(nomeJogador,pontuacao);
                                                         clearInterval(cronometro);
-                            document.getElementById('botaoRecomecar').style.color="yellow";
+                            document.getElementById('botaoRecomecar').style.color="orange";
                             document.f.btnRecomecar.disabled=false;
 							parar=true;
                         }
@@ -307,7 +307,7 @@ font-size:75px;
                                                         adicionarPontuacao(nomeJogador,pontuacao);
 							clearInterval(cronometro);
 							
-                            document.getElementById('botaoRecomecar').style.color="yellow";
+                            document.getElementById('botaoRecomecar').style.color="orange";
                             document.f.btnRecomecar.disabled=false;
                 
                             parar=true;	
@@ -451,7 +451,7 @@ font-size:75px;
       			clearInterval(cronometro);
       			parar=true;
       			alert("Seu tempo acabou");
-      			document.getElementById('botaoRecomecar').style.color="yellow";
+      			document.getElementById('botaoRecomecar').style.color="orange";
                 document.f.btnRecomecar.disabled=false;
                 adicionarPontuacao(nomeJogador,pontuacao);
       		}		
