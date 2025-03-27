@@ -466,6 +466,17 @@ touch-action : pan-y;
       		}		
       	}, 1000);
       }
+		document.addEventListener('keydown',function(event){
+			if(event.key == 'ArrowLeft' || event.key == 'a' || event.key == 'A'){
+				direcao(1);
+			}
+			if(event.key == 'ArrowUp' || event.key == 'w' || event.key == 'W'){
+				direcao(2);
+			}
+			if(event.key == 'ArrowRight' || event.key == 'd' || event.key == 'D'){
+				direcao(3);
+			}
+		});
 
 		</script>
 	</head>
