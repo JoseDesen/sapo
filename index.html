@@ -3,72 +3,72 @@
 		<meta charset="UTF-8">
 		<title>sapo</title>
 		<style>
-body {
-  user-select: none;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-touch-action : pan-y;
-}
+		body {
+			user-select: none;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			touch-action: pan-y;
+		}
 		*{
-		text-align:center;
-		color:black;
+			text-align:center;
+			color:black;
  	       font-size: 50px;
 		}
 		#j3{
-		background-color:green;
+			background-color:green;
 		}
 		#j1,#j2,#j4,#j5{
-		background-color:white;
-		width:100px;
-		height:100px;
+			background-color:white;
+			width:100px;
+			height:100px;
 		}
 		input{
-		border:none;
+			border:none;	
 		}
 		.a1,.a2,.a3,.a4,.a5,.b1,.b2,.b3,.b4,.b5,.c1,.c2,.c3,.c4,.c5,.d1,.d2,.d3,.d4,.d5,.j1,.j2,.j3,.j4,.j5{
-		width:100px;
-		height:100px;
+			width:100px;
+			height:100px;
         	margin: 1px;
 		}
-	        #botaoRecomecar{
-	            background-color:white;
-	            color:white;
-		    font-size:100px;
-	        }
+		#botaoRecomecar{
+			background - color: white;
+			color: white;
+			font - size: 100px;
+		}
 		.direcao{
-		font-size: 75px;
-		margin-left:20px;
+			font-size: 75px;
+			margin-left:20px;
 		}
 		</style>
 		<script>
-                        var nomeJogador;
-                	do{
-				nomeJogador=prompt("Qual é seu nome?");
-			}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");
+        var nomeJogador;
+        do{
+			nomeJogador=prompt("Qual é seu nome?");
+		}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");
                         
-                        // Função para adicionar um novo pontuacao
-				async function adicionarPontuacao(nome, pontuacao) {
-				    try {
-				        const response = await fetch('https://sapo-lt2w.onrender.com/pontuacao/', {
-				            method: 'POST',
-				            headers: {
-				                'Content-Type': 'application/json',
-				            },
-				            body: JSON.stringify({ nome, pontuacao }),
-				        });
-				        const data = await response.json();
-				        console.log('Resposta do servidor:', data);
-				        if (!response.ok) {
-				            throw new Error(`Erro: ${response.statusText}`);
-				        }
-				        exibirMelhoresPontuacaos();
-				    } catch (error) {
-				        console.error('Erro ao adicionar pontuacao:', error);
-				    }
+        // Função para adicionar um novo pontuacao
+		async function adicionarPontuacao(nome, pontuacao) {
+			try {
+				const response = await fetch('https://sapo-lt2w.onrender.com/pontuacao/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ nome, pontuacao }),
+				});
+				const data = await response.json();
+				console.log('Resposta do servidor:', data);
+				if (!response.ok) {
+					throw new Error(`Erro: ${response.statusText}`);
 				}
+				exibirMelhoresPontuacaos();
+			} catch (error) {
+				console.error('Erro ao adicionar pontuacao:', error);
+			}
+		}
 
 				// Função para exibir os melhores pontuacaos na tabela
 				async function exibirMelhoresPontuacaos() {
