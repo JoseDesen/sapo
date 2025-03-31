@@ -47,59 +47,7 @@
 	        var nomeJogador;
 	        do{
 			nomeJogador=prompt("Qual é seu nome?");
-		}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");
-
-		//parte do código que para mover o toque-screen
-		let startX, startY;
-
-		const gameArea = document.getElementById('gameArea');
-		
-		gameArea.addEventListener('touchstart', function(event) {
-		    const touch = event.touches[0];
-		    startX = touch.clientX;
-		    startY = touch.clientY;
-		}, false);
-		
-		gameArea.addEventListener('touchmove', function(event) {
-		    event.preventDefault(); // Evita o scroll da página
-		}, false);
-		
-		gameArea.addEventListener('touchend', function(event) {
-		    const touch = event.changedTouches[0];
-		    const endX = touch.clientX;
-		    const endY = touch.clientY;
-		
-		    const diffX = endX - startX;
-		    const diffY = endY - startY;
-		
-		    if (Math.abs(diffX) > Math.abs(diffY)) {
-		        // Movimento horizontal
-		        if (diffX > 0) {
-		            // Swipe para a direita
-		            direcao(3);
-		        } else {
-		            // Swipe para a esquerda
-		            direcao(2);
-		        }
-		    } else {
-		        // Movimento vertical
-		        if (diffY < 0) {
-		            // Swipe para cima
-				direcao(2)
-				} else {
-					// Swipe para baixo
-		        }
-		    }
-		}, false);
-
-
-
-
-
-
-
-
-			
+		}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");			
         // Função para adicionar um novo pontuacao
 		async function adicionarPontuacao(nome, pontuacao) {
 			try {
@@ -569,9 +517,6 @@
 <input type="button" class="direcao" value="esquerda" onclick="direcao(1)">
 <input type="button" class="direcao" value="frente" onclick="direcao(2)">
 <input type="button" class="direcao" value="direita" onclick="direcao(3)">
-<div id="gameArea" style="width: 100%; height: 100vh; background-color: lightgray;">
-	<h3>Arraste para a direção desejada</h3>
-</div>	
 <div id='tempo'></div>
 <div id='pontuacao'></div>
 <input type="button" id="botaoRecomecar" value="Recomeçar" name="btnRecomecar" onclick="iniciar()" disabled>
