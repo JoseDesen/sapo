@@ -533,8 +533,6 @@
 <div id="gameArea" style="width: 100%; height: 0vh; background-color: lightgray;">
 	<input type="button" value="Ativar/Desativar TouchScreen" onclick="touchScreen()">
 </div>
-
-<script scr='./touch-screen.js'></script>
 </form>	
 <br><br><br>
 	<table id="melhores-pontuacaos" border="1">
@@ -552,5 +550,50 @@
 			
 		</tbody>
 	</table>
+	<script>
+	//parte do codigo que faz o touch-screen
+		let startX, startY;
+
+		gameArea.addEventListener('touchstart', function(event) {
+			const touch = event.touches[0];
+			startX = touch.clientX;
+			startY = touch.clientY;
+		}, false);
+
+		gameArea.addEventListener('touchmove', function(event) {
+			event.preventDefault(); // Evita o scroll da página
+		}, false);
+
+		gameArea.addEventListener('touchend', function(event) {
+			const touch = event.changedTouches[0];
+			const endX = touch.clientX;
+			const endY = touch.clientY;
+
+			const diffX = endX - startX;
+			const diffY = endY - startY;
+
+			if (Math.abs(diffX) > Math.abs(diffY)) {
+				// Movimento horizontal
+				if (diffX > 0) {
+					// Swipe para a direita
+					direcao(3);
+					console.log('direita');
+				} else {
+					// Swipe para a esquerda
+					direcao(1);					
+					console.log('esquerda');
+				}
+			} else {
+				// Movimento vertical
+				if (diffY < 0) {
+					// Swipe para cima
+					direcao(2);
+					console.log('cima');
+				} else {
+					// Swipe para baixo
+				}
+			}
+		}, false);
+	</script>
 	</body>
 </html>
