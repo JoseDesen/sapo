@@ -483,12 +483,9 @@
 			let altura = document.getElementById('gameArea').style.height;
 			if(altura=='0vh'){
 				document.getElementById('gameArea').style.height='50vh';
-				document.getElementById('gameArea').style.touchAction='auto';
-				document.body.style.touchAction='none';	
-				document.getElementById('gameArea').style.touchAction='auto';
 			}else{
 				document.getElementById('gameArea').style.height='0vh';
-				document.body.style.touchAction='pan-y';
+				
 			}
 		}
 
@@ -535,7 +532,6 @@
 <input type="button" id="botaoRecomecar" value="Recomeçar" name="btnRecomecar" onclick="iniciar()" disabled>
 <div id="gameArea" style="width: 100%; height: 0vh; background-color: lightgray;">
 	<input type="button" value="Ativar/Desativar TouchScreen" onclick="touchScreen()">
-	<h1>teste</h1>
 </div>
 
 <script scr='touch-screen.js'></script>
