@@ -47,8 +47,9 @@
 	        var nomeJogador;
 	        do{
 			nomeJogador=prompt("Qual é seu nome?");
-		}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");			
-        // Função para adicionar um novo pontuacao
+		}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");	
+		
+        	// Função para adicionar um novo pontuacao
 		async function adicionarPontuacao(nome, pontuacao) {
 			try {
 				const response = await fetch('https://sapo-lt2w.onrender.com/pontuacao/', {
@@ -479,6 +480,16 @@
 				iniciar();
 			}
 		});
+		function touchScreen(){
+			let altura = document.getElementById('gameArea').style.height;
+			if(altura=='0vh'){
+				document.getElementById('gameArea').style.height='50vh';
+				document.body.style.touchAction='none';				
+			}else{
+				document.getElementById('gameArea').style.height='0vh';
+				document.body.style.touchAction='pan-y';
+			}
+		}
 
 		</script>
 	</head>
@@ -519,8 +530,13 @@
 <input type="button" class="direcao" value="direita" onclick="direcao(3)">
 <div id='tempo'></div>
 <div id='pontuacao'></div>
-<input type="button" id="botaoRecomecar" value="Recomeçar" name="btnRecomecar" onclick="iniciar()" disabled>
 
+<input type="button" id="botaoRecomecar" value="Recomeçar" name="btnRecomecar" onclick="iniciar()" disabled>
+<div id="gameArea" style="width: 100%; height: 0vh; background-color: lightgray;">
+	<input type="button" value="Ativar/Desativar TouchScreen" onclick="touchScreen()">
+</div>
+
+<script scr='touch-screen.js'></script>
 </form>	
 <br><br><br>
 	<table id="melhores-pontuacaos" border="1">
