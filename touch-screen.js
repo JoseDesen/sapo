@@ -25,15 +25,18 @@ let startX, startY;
 				if (diffX > 0) {
 					// Swipe para a direita
 					direcao(3);
+					console.log('direita');
 				} else {
 					// Swipe para a esquerda
 					direcao(1);
+					console.log('esquerda');
 				}
 			} else {
 				// Movimento vertical
 				if (diffY < 0) {
 					// Swipe para cima
 					direcao(2);
+					console.log('cima');
 				} else {
 					// Swipe para baixo
 				}
