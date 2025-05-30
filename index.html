@@ -92,7 +92,7 @@
 	        var nomeJogador;
 	        do{
 			nomeJogador=prompt("Qual é seu nome?");
-		}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null");
+		}while(nomeJogador.trim()=="" || nomeJogador==null || nomeJogador=="null" || nomeJogador.length<3);
         	// Função para adicionar um novo pontuacao
 		async function adicionarPontuacao(nome, pontuacao) {
 			try {
