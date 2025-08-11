@@ -553,7 +553,7 @@
       rec.lang = "pt-BR";
       rec.continuous = true; // Mantém ouvindo
 
-      function  permissao() {
+      function startRecognition() {
         navigator.mediaDevices.getUserMedia({ audio: true })
           .then(() => {
             rec.start();
@@ -581,8 +581,12 @@
       });
 
       rec.addEventListener("end", () => {
-        console.log("Reconhecimento encerrado");
-        alert("Reconhecimento encerrado")
+            console.log("Reconhecimento encerrado. Reiniciando...");
+            setTimeout(() => {
+                startRecognition();
+            }, 100);
+		  
+		  
       });
     }
 			
@@ -627,7 +631,7 @@
 <div id='tempo'></div>
 <div id='pontuacao'></div>
   
-  <input type="button" onclick="permissao()" id="startVoice" value="🎤 Falar">
+  <input type="button" onclick="startRecognition()" id="startVoice" value="🎤 Falar">
   <p id="output">Aperte no botão falar</p>
 
 <input type="button" id="botaoRecomecar" value="Recomeçar" name="btnRecomecar" onclick="iniciar()" disabled>
