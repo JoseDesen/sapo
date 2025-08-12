@@ -12,11 +12,12 @@
 			-moz-user-select: none;
 			-ms-user-select: none;
 			touch-action: pan-y;
+            font-size: 20px;
 		}
 		*{
 			text-align:center;
 			color:black;
- 	       font-size: 50px;
+ 	       
 		}
 		#j3{
 			background-color:#786C3B;
@@ -33,6 +34,7 @@
 			width:100px;
 			height:100px;
         	margin: 1px;
+            font-size: 50px;
 		}
 		#botaoRecomecar{
 			background-color: white;
@@ -43,7 +45,7 @@
 			font-size: 75px;
 			margin-left:20px;
 		}
-		/* Estilos para a janela modal */
+		/* Estilos para a janela modal de configurações */
         .modal {
             display: none; /* Escondido por padrão */
             position: fixed; /* Fica fixo na tela */
@@ -56,17 +58,16 @@
             background-color: rgb(0,0,0); /* Cor de fundo */
             background-color: rgba(0,0,0,0.4); /* Fundo com transparência */
         }
-
-        /* Conteúdo da janela modal */
+        /* Conteúdo da janela modal de configurações */
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto; /* Centraliza verticalmente */
             padding: 20px;
             border: 1px solid #888;
             width: 80%; /* Largura da janela */
+            font-size: 20px;
         }
-
-        /* Botão de fechar */
+        /* Botão de fechar do modal de configurações */
         .close {
             color: #aaa;
             float: right;
@@ -87,6 +88,115 @@
             font-size: 50px;
             background-color: white;
         }
+		/* Estilos do modal-sapo.html */
+		:root{
+			--bg:#f4fbf7;
+			--card:#ffffff;
+			--accent:#2a9d8f;
+			--muted:#6b7280;
+			--shadow: 0 6px 18px rgba(38,50,56,0.08);
+			--radius:12px;
+			font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+			color:#0f172a;
+		}
+		.kbd{
+			display:inline-block;
+			padding:6px 9px;
+			border-radius:6px;
+			background:#fff;
+			border:1px solid #e6eef0;
+			font-weight:600;
+			margin-right:6px;
+            font-size: 16px;
+		}
+		.modal-overlay {
+			position: fixed;
+			top: 0; left: 0;
+			width: 100%; height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			display: flex; 
+			align-items: center; 
+			justify-content: center;
+			z-index: 999;
+		}
+		.modal-tutorial {
+			background: white;
+			width: 80%;
+			max-width: 500px;
+			padding: 20px;
+			border-radius: 10px;
+			position: relative;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+			animation: aparecer 0.3s ease;
+            font-size: 16px;
+			text-align: left;
+		}
+		@keyframes aparecer {
+			from { opacity: 0; transform: scale(0.9); }
+			to   { opacity: 1; transform: scale(1); }
+		}
+		.modal-close {
+			position: absolute;
+			top: 10px; right: 15px;
+			cursor: pointer;
+			font-size: 20px;
+			background: none;
+			border: none;
+			color: #888;
+		}
+        .modal-tutorial .modal-content ul li {
+            text-align: left;
+        }
+		.modal-tutorial .modal-content {
+            text-align: left;
+        }
+		.modal-tutorial .modal-content h2 {
+			margin-top: 0;
+			color: #2b7a4b;
+            font-size: 22px;
+			text-align: left;
+		}
+		.modal-tutorial .modal-content p {
+			margin: 10px 0;
+			text-align: left;
+		}
+		.modal-footer {
+			text-align: right;
+			margin-top: 20px;
+		}
+		.modal-footer button {
+			padding: 8px 15px;
+			border: none;
+			background-color: #2b7a4b;
+			color: white;
+			cursor: pointer;
+			border-radius: 5px;
+			font-size: 14px;
+		}
+		.modal-footer button:hover {
+			background-color: #25653f;
+		}
+		.btn-tutorial{
+			display:inline-block;
+			padding:8px 12px;
+			border-radius:8px;
+			background:var(--accent);
+			color:white;
+			font-weight:600;
+			text-decoration:none;
+			border:none;
+			cursor:pointer;
+            font-size: 14px;
+		}
+		.btn-outline{
+			background:transparent;
+			color:var(--accent);
+			border:1px solid var(--accent);
+		}
+        #melhores-pontuacaos th, #melhores-pontuacaos td, #tempo,#pontuacao, #touch, #myModal .modal-content,#btn-cores {
+            font-size: 50px;
+        }
+
 		</style>
 		<script>
 	        var nomeJogador;
@@ -543,11 +653,13 @@
         AguaCor=document.f2.AguaColor.value;
         modal.style.display = "none";
     }
+    window.onload = function() {
+        document.getElementById('tutorialModal').style.display = "flex";
+    };
 			
-    		
 		</script>
 	</head>
-	<body bg-color="white" onload="iniciar()">
+	<body bg-color="white">
 		
 <form name="f">
 <input type="button" id="a1" class="a1" disabled>
@@ -588,19 +700,16 @@
 	
 <input type="button" id="botaoRecomecar" value="Recomeçar" name="btnRecomecar" onclick="iniciar()" disabled>
 <div id="gameArea" style="width: 100%; height: 0vh; background-color: lightgray;">
-	<input type="button" value="Ativar/Desativar TouchScreen" onclick="touchScreen()">
+	<input id="touch" type="button" value="Ativar/Desativar TouchScreen" onclick="touchScreen()">
 </div>
 
 
 </form>
 
-<!-- Botão para abrir a janela modal -->
 <button id="btnModal">⚙️</button>
 
-<!-- A Janela Modal -->
 <div id="myModal" class="modal">
 
-	<!-- Conteúdo da Janela Modal -->
 	<div class="modal-content">
 		<span class="close">&times;</span>
 		<form name="f2">
@@ -611,7 +720,7 @@
 			<br>
 			Cor da água:<input type="color" name="AguaColor">
 			<br>
-			<input type="button" value="mudar cores" onclick="cores()">
+			<input id="btn-cores" type="button" value="mudar cores" onclick="cores()">
 		</form>
 
 	</div>
@@ -634,6 +743,18 @@
 			
 		</tbody>
 	</table>
+
+<div class="modal-overlay" id="tutorialModal">
+    <div class="modal-tutorial">
+        <button class="modal-close" onclick="fecharTutorial()">✖</button>
+        <div class="modal-content" id="tutorialConteudo">
+            </div>
+        <div class="modal-footer">
+            <button id="btnProximo" onclick="proximoPasso()">Próximo</button>
+        </div>
+    </div>
+</div>
+
 	<script>
 	//parte do codigo que faz o touch-screen
 		let startX, startY;
@@ -680,7 +801,7 @@
 		}, false);
 
 		
-    // Pega todos os elementos  do modal
+    // Pega todos os elementos  do modal de configurações
     var modal = document.getElementById("myModal");
     var btn = document.getElementById("btnModal");
     var span = document.getElementsByClassName("close")[0];
@@ -694,7 +815,64 @@
     span.onclick = function() {
         modal.style.display = "none";
     }
+		// Lógica do tutorial
+		const passos = [
+			`<h2>Como Jogar</h2>
+			<p>Bem-vindo ao Jogo do Sapo! Sua missão é guiar o sapo pulando para a vitória-régia correta antes que o tempo acabe.</p>`,
+			`<h2>Controles no Celular</h2>
+			<p><ul>
+				<li><em>Botões Virtuais:</em>
+				<ul>
+					<li>Toque em <span class="btn-tutorial btn-outline">FRENTE</span> quando a vitória-régia estiver à frente.</li>
+					<li>Toque em <span class="btn-tutorial btn-outline">DIREITA</span> quando estiver à direita.</li>
+					<li>Toque em <span class="btn-tutorial btn-outline">ESQUERDA</span> quando estiver à esquerda.</li>
+				</ul>
+				</li>
+				<li style="margin-top:8px"><em>Gestos (Deslizar o Dedo):</em>
+				<ul>
+					<li>Ative a área de toque com o botão <strong>Ativar/Desativar Touch Screen</strong>.</li>
+					<li>Deslize <strong>para cima</strong> → pular para frente.</li>
+					<li>Deslize <strong>para a direita</strong> → pular para a direita.</li>
+					<li>Deslize <strong>para a esquerda</strong> → pular para a esquerda.</li>
+				</ul>
+				</li>
+			</ul>`,
+			`<h2>Controles no Computador</h2>
+			<p>
+				<ul>
+					<li><span class="kbd">↑</span> ou <span class="kbd">W</span> — pular para frente.</li>
+					<li><span class="kbd">→</span> ou <span class="kbd">D</span> — pular para a direita.</li>
+					<li><span class="kbd">←</span> ou <span class="kbd">A</span> — pular para a esquerda.</li>
+				</ul>
+			</p>`,
+			`<h2>Regras</h2>
+			<p>Ganhe 1 ponto por acerto. A cada 10 pontos, +5 segundos no tempo. O jogo acaba se errar ou o tempo zerar.</p>`
+		];
 
+		let passoAtual = 0;
+
+		function mostrarPasso() {
+			document.getElementById("tutorialConteudo").innerHTML = passos[passoAtual];
+			document.getElementById("btnProximo").textContent = 
+			passoAtual === passos.length - 1 ? "Começar" : "Próximo";
+		}
+
+		function proximoPasso() {
+			if (passoAtual < passos.length - 1) {
+				passoAtual++;
+				mostrarPasso();
+			} else {
+				fecharTutorial();
+			}
+		}
+
+		function fecharTutorial() {
+			document.getElementById("tutorialModal").style.display = "none";
+			iniciar(); // Inicia o jogo após fechar o tutorial
+		}
+
+		// Mostra o primeiro passo ao carregar
+		mostrarPasso();
 	</script>
 
 	</body>
