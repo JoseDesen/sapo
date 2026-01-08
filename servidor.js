@@ -35,6 +35,14 @@ async function connect() {
 }
 connect();
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: "online",
+    message: "Servidor do Jogo do Sapo rodando!",
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.post('/pontuacao', async (req, res) => {
   try {
     const { nome, pontuacao } = req.body;
@@ -81,6 +89,9 @@ app.get('/pontuacao', async (req, res) => {
     res.status(500).send('Erro interno no servidor');
   }
 });
+
+
+
 app.listen(porta, () => {
   console.log(`Servidor rodando na porta ${porta}`);
 });
